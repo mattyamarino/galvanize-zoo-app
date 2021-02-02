@@ -133,4 +133,14 @@ class ZooControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(habitatString));
     }
+
+    @Test
+    public void giveTreat() throws Exception {
+        Animal flamingo = animalRepository.save(new Animal("flamingo", FLYING));
+
+        mockMvc.perform(patch("/feed-animal?animalId="+ flamingo.getId()))
+                .andExpect(status().isOk());
+
+        assertTrue(animalRepository.findById(flamingo.getId()).get().isHappy());
+    }
 }

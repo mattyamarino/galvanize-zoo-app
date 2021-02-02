@@ -46,4 +46,9 @@ public class ZooController {
         return service.getEmptyHabitats();
     }
 
+    @PatchMapping("/feed-animal")
+    public void giveTreat(@RequestParam Long animalId) {
+        service.giveTreat(animalId);
+    }
+
 }
